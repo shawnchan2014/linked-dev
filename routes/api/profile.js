@@ -49,7 +49,7 @@ router.post(
     // Check validation
     if (!isValid) {
       // Return any errors
-      return res.status(500).json(errors);
+      return res.status(400).json(errors);
     }
 
     // Get fields
