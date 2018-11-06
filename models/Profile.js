@@ -25,16 +25,32 @@ const ProfileSchema = new schema({
     type: String,
     required: true
   },
+  bio: {
+    type: String
+  },
+  githubusername: {
+    type: String
+  },
   skills: {
     type: [String],
     required: true
   },
-  bio: {
-    type: String,
-    required: true
-  },
-  githubusername: {
-    type: String
+  social: {
+    linkedin: {
+      type: String
+    },
+    facebook: {
+      type: String
+    },
+    twitter: {
+      type: String
+    },
+    instagram: {
+      type: String
+    },
+    youtube: {
+      type: String
+    }
   },
   experience: [
     {
@@ -43,7 +59,8 @@ const ProfileSchema = new schema({
         required: true
       },
       company: {
-        type: String
+        type: String,
+        required: true
       },
       location: {
         type: String
@@ -94,23 +111,6 @@ const ProfileSchema = new schema({
       }
     }
   ],
-  social: {
-    linkedin: {
-      type: String
-    },
-    facebook: {
-      type: String
-    },
-    twitter: {
-      type: String
-    },
-    youtube: {
-      type: String
-    },
-    instagram: {
-      type: String
-    }
-  },
   date: {
     type: Date,
     default: Date.now
