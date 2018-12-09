@@ -238,10 +238,65 @@ router.post(
 // @route       DELETE /api/profile/experience/:exp_id
 // @description Delete experience from profile
 // @access      Private
-router.post(
-  '/education/:exp_id',
+router.delete(
+  '/experience/:exp_id',
   passport.authenticate('jwt', { session: false }),
-  (req, res) => {}
+  (req, res) => {
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      // Get remove index
+      const removeIndex = profile.experience
+        .map(item => item.id)
+        .indexOf(req.params.exp_id);
+
+      // Index of id not found
+      if (removeIndex == -1) {
+        res.status(400).json({ err: 'No such experience id' });
+      }
+      // ID found
+      else {
+        // Splice out of array
+        profile.experience.splice(removeIndex, 1);
+
+        // Save
+        profile
+          .save()
+          .then(profile => res.json(profile))
+          .catch(err => res.statusCode(404).json(err));
+      }
+    });
+  }
+);
+
+// @route       DELETE /api/profile/education/:edu_id
+// @description Delete education from profile
+// @access      Private
+router.delete(
+  '/education/:edu_id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      // Get remove index
+      const removeIndex = profile.education
+        .map(item => item.id)
+        .indexOf(req.params.edu_id);
+
+      // Index of id not found
+      if (removeIndex == -1) {
+        res.status(400).json({ err: 'No such education id' });
+      }
+      // ID found
+      else {
+        // Splice out of array
+        profile.education.splice(removeIndex, 1);
+
+        // Save
+        profile
+          .save()
+          .then(profile => res.json(profile))
+          .catch(err => res.statusCode(404).json(err));
+      }
+    });
+  }
 );
 
 module.exports = router;
