@@ -47,7 +47,8 @@ router.post('/register', (req, res) => {
         name: req.body.name,
         email: req.body.email,
         avatar: avatar,
-        password: req.body.password
+        password: req.body.password,
+        date: new Date()
       });
 
       // Hash the password and save the new user to db
@@ -61,7 +62,9 @@ router.post('/register', (req, res) => {
               res.json({
                 id: user.id,
                 name: user.name,
-                email: user.email
+                email: user.email,
+                avatar: user.avatar,
+                date: user.date
               })
             )
             .catch(err => console.log(err));
