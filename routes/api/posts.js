@@ -84,7 +84,7 @@ router.delete(
         Post.deleteOne()
           .then(() => res.json({ success: true }))
           .catch(err =>
-            res.status(404).json({
+            res.status(500).json({
               error: 'Error deleting post'
             })
           );
@@ -93,6 +93,71 @@ router.delete(
 
     // May try the below in the future:
     // Post.findOneAndDelete({user: req.user.id, id: req.params.id}).then();
+  }
+);
+
+// @route       POST /api/posts/like/:id
+// @description Like post
+// @access      Private
+router.post(
+  '/like/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Post.findById(req.params.id)
+      .then(post => {
+        if (
+          post.likes.filter(like => like.user.toString() === req.user.id)
+            .length > 0
+        ) {
+          return res
+            .status(400)
+            .json({ alreadyliked: 'User already liked this post' });
+        }
+
+        // Add user ID to likes array
+        post.likes.unshift({ user: req.user.id });
+
+        post
+          .save()
+          .then(post => res.json(post))
+          .catch(err => res.json(500).json({ error: 'Error saving like' }));
+      })
+      .catch(err => res.status(404).json({ postnotfound: 'No post found' }));
+  }
+);
+
+// @route       POST /api/posts/unlike/:id
+// @description Unlike post
+// @access      Private
+router.post(
+  '/unlike/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Post.findById(req.params.id)
+      .then(post => {
+        if (
+          post.likes.filter(like => like.user.toString() === req.user.id)
+            .length === 0
+        ) {
+          return res
+            .status(400)
+            .json({ notliked: 'You have not yet liked the post' });
+        }
+
+        // Get remove index
+        const removeIndex = post.likes
+          .map(item => item.user.toString())
+          .indexOf(req.user.id);
+
+        //Splice out of array
+        post.likes.splice(removeIndex, 1);
+
+        post
+          .save()
+          .then(post => res.json(post))
+          .catch(err => res.json(500).json({ error: 'Error saving unlike' }));
+      })
+      .catch(err => res.status(404).json({ postnotfound: 'No post found' }));
   }
 );
 
