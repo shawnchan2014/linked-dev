@@ -37,6 +37,25 @@ router.get(
   }
 );
 
+// @route       GET /api/profile/all
+// @description Get all profiles
+// @access      Public
+router.get('/all', (req, res) => {
+  const errors = {};
+
+  Profile.find()
+    .populate('user', ['name', 'avatar'])
+    .then(profiles => {
+      if (!profiles) {
+        errors.noprofile = 'There are no profiles';
+        res.status(404).json(errors);
+      } else {
+        res.json(profiles);
+      }
+    })
+    .catch(err => res.status(404).json(err));
+});
+
 // @route       GET /api/profile/handle/:handle
 // @description Get profile by handle
 // @access      Public
@@ -49,17 +68,17 @@ router.get('/handle/:handle', (req, res) => {
       if (!profile) {
         errors.noprofile = 'There is no profile for this user';
         res.status(404).json(errors);
+      } else {
+        res.json(profile);
       }
-
-      res.json(profile);
     })
-    .catch(err => res.statusCode(404).json(err));
+    .catch(err => res.status(404).json(err));
 });
 
 // @route       GET /api/profile/user/:user_id
 // @description Get profile by user ID
 // @access      Public
-router.get('/user/:user_id ', (req, res) => {
+router.get('/user/:user_id', (req, res) => {
   const errors = {};
 
   Profile.findOne({ user: req.params.user_id })
@@ -68,11 +87,15 @@ router.get('/user/:user_id ', (req, res) => {
       if (!profile) {
         errors.noprofile = 'There is no profile for this user';
         res.status(404).json(errors);
+      } else {
+        res.json(profile);
       }
-
-      res.json(profile);
     })
-    .catch(err => res.statusCode(404).json(err));
+    .catch(err =>
+      res.status(404).json({ noprofile: 'There is no profile for this user' })
+    );
+  // err will shows cast error because failing to cast to objectID of user,
+  // different from get profile by handle
 });
 
 // @route       POST /api/profile
