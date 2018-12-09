@@ -3,8 +3,9 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
 
-// Post model
+// Load models
 const Post = require('../../models/Post');
+const Profile = require('../../models/Profile');
 
 // Validation
 const validatePostInput = require('../../validation/post');
@@ -60,6 +61,38 @@ router.post(
       .save()
       .then(post => res.json(post))
       .catch(err => res.status(400).json(err));
+  }
+);
+
+// @route       DELETE /api/posts/:id
+// @description Delete post
+// @access      Private
+router.delete(
+  '/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Post.findById(req.params.id)
+      .then(post => {
+        // Check for post owner
+        if (post.user.toString() !== req.user.id) {
+          return res.status(401).json({
+            notauthorized: 'User not authorized'
+          });
+        }
+
+        // Delete
+        Post.deleteOne()
+          .then(() => res.json({ success: true }))
+          .catch(err =>
+            res.status(404).json({
+              error: 'Error deleting post'
+            })
+          );
+      })
+      .catch(err => res.status(404).json({ postnotfound: 'No post found' }));
+
+    // May try the below in the future:
+    // Post.findOneAndDelete({user: req.user.id, id: req.params.id}).then();
   }
 );
 
