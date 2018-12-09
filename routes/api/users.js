@@ -47,8 +47,7 @@ router.post('/register', (req, res) => {
         name: req.body.name,
         email: req.body.email,
         avatar: avatar,
-        password: req.body.password,
-        date: new Date()
+        password: req.body.password
       });
 
       // Hash the password and save the new user to db
