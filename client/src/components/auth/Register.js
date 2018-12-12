@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+// import { withRouter } from 'react-router-dom';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
@@ -16,6 +17,25 @@ class Register extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
+  // static getDerivedStateFromProps(nextProps, prevState) {
+  //   if (nextProps.errors) {
+  //     return { errors: nextProps.errors };
+  //   }
+  //   return null
+  // }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevProps.errors !== this.props.errors) {
+  //     this.setState({ errors: this.props.errors })
+  //   }
+  // }
+
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -30,13 +50,11 @@ class Register extends Component {
       password2: this.state.password2
     };
 
-    this.props.registerUser(newUser);
+    this.props.registerUser(newUser, this.props.history);
   };
 
   render() {
     const { errors } = this.state;
-
-    const { user } = this.props.auth;
 
     return (
       <div className="register">
@@ -124,20 +142,23 @@ class Register extends Component {
 
 Register.propTypes = {
   auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
   registerUser: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
-});
-
-const mapDispatchToProps = dispatch => ({
-  registerUser: newUser => {
-    dispatch(registerUser(newUser));
-  }
+  auth: state.auth,
+  errors: state.errors
 });
 
 // Alternative 1
+// const mapDispatchToProps = dispatch => ({
+//   registerUser: newUser => {
+//     dispatch(registerUser(newUser));
+//   }
+// });
+
+// Alternative 2
 // const mapDispatchToProps = dispatch => {
 //   return {
 //     registerUser: newUser => {
@@ -148,6 +169,7 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-  //{ registerUser } // Alternative 2
+  //mapDispatchToProps
+  { registerUser }
 )(Register);
+//) (withRouter(Register));
