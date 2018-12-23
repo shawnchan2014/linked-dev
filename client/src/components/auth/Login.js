@@ -26,8 +26,6 @@ class Login extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
       this.props.history.push('/dashboard');
-      // TODO: when is already authenticated, wrong password can
-      // also login
     }
 
     if (nextProps.errors) {
