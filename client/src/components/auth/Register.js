@@ -159,17 +159,12 @@ const mapStateToProps = state => ({
 // });
 
 // Alternative 2
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     registerUser: newUser => {
-//       dispatch(registerUser(newUser));
-//     }
-//   };
-// };
+const mapDispatchToProps = {
+  registerUser
+};
 
 export default connect(
   mapStateToProps,
-  //mapDispatchToProps
-  { registerUser }
+  mapDispatchToProps
 )(Register);
 //) (withRouter(Register));
