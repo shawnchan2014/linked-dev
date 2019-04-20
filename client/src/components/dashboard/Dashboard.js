@@ -54,12 +54,12 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProp = state => ({
+const mapStateToProps = state => ({
   profile: state.profile,
   auth: state.auth
 });
 
-const mapDispatchToProp = {
+const mapDispatchToProps = {
   getCurrentProfile
 };
 
@@ -70,6 +70,6 @@ Dashboard.propTypes = {
 };
 
 export default connect(
-  mapStateToProp,
-  mapDispatchToProp
+  mapStateToProps,
+  mapDispatchToProps
 )(Dashboard);
