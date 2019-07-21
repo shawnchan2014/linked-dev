@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ProfileActions = () => {
+const ProfileActions = props => {
   return (
-    <div className='btn-group mb-4' role='group'>
+    <div className='btn-group mb-4 flex-wrap' role='group'>
+      <Link to={`/profile/${props.handle}`} className='btn btn-light'>
+        <i className='fas fa-user-circle text-info mr-1' /> My Profile
+      </Link>
       <Link to='/edit-profile' className='btn btn-light'>
-        <i className='fas fa-user-circle text-info mr-1' /> Edit Profile
+        <i className='fas fa-user-edit text-info mr-1' /> Edit Profile
       </Link>
       <Link to='/add-experience' className='btn btn-light'>
         <i className='fab fa-black-tie text-info mr-1' />

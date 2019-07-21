@@ -35,9 +35,10 @@ class Dashboard extends Component {
         dashbaordContent = (
           <div>
             <p className='lead text-muted'>
-              Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>{' '}
+              {/* Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>{' '} */}
+              Welcome, {user.name}
             </p>
-            <ProfileActions />
+            <ProfileActions handle={profile.handle} />
             <Experience experience={profile.experience} />
             <Education education={profile.education} />
             <div style={{ marginBottom: '60px' }} />

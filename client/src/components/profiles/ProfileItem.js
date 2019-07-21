@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import isEmtpy from '../../validation/is-empty';
+import isEmpty from '../../validation/is-empty';
 
 class ProfileItem extends Component {
   render() {
@@ -21,13 +21,16 @@ class ProfileItem extends Component {
             <h3>{profile.user.name}</h3>
             <p>
               {profile.status}{' '}
-              {isEmtpy(profile.company) ? null : (
+              {isEmpty(profile.company) ? null : (
                 <span>at {profile.company}</span>
               )}
             </p>
             <p>
-              {isEmtpy(profile.location) ? null : (
-                <span>at {profile.location}</span>
+              {isEmpty(profile.location) ? null : (
+                <span>
+                  {<i className='fas fa-map-marker-alt pr-1' />}
+                  {profile.location}
+                </span>
               )}
             </p>
             <Link to={`/profile/${profile.handle}`} className='btn btn-info'>
@@ -37,7 +40,7 @@ class ProfileItem extends Component {
           <div className='col-md-4 d-none d-md-block'>
             <h4>Top Skills</h4>
             <ul className='list-group'>
-              {profile.skills.slice(0, 4).map((skill, index) => (
+              {profile.skills.slice(0, 5).map((skill, index) => (
                 <li key={index} className='list-group-item'>
                   {<i className='fas fa-check pr-1' />} {skill}
                 </li>
