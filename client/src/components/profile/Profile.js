@@ -39,7 +39,7 @@ export class Profile extends Component {
           </div>
           <ProfileHeader profile={profile} />
           <ProfileAbout profile={profile} />
-          <ProfileCreds />
+          <ProfileCreds profile={profile} />
           <ProfileGitHub />
         </div>
       );
