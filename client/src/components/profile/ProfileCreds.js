@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class ProfileCreds extends Component {
-  static propTypes = {
-    prop: PropTypes
-  };
-
   render() {
     return (
       <div>
@@ -14,5 +10,9 @@ class ProfileCreds extends Component {
     );
   }
 }
+
+ProfileCreds.propTypes = {
+  profile: PropTypes.object.isRequired
+};
 
 export default ProfileCreds;
