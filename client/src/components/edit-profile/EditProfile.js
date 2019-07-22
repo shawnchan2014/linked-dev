@@ -148,7 +148,7 @@ class EditProfile extends Component {
           />
           <InputGroup
             placeholder='LinkedIn Profile URL'
-            name='linkedIn'
+            name='linkedin'
             icon='fab fa-linkedin'
             value={this.state.linkedin}
             onChange={this.onChange}
@@ -156,7 +156,7 @@ class EditProfile extends Component {
           />
           <InputGroup
             placeholder='YouTube Channel URL'
-            name='youTube'
+            name='youtube'
             icon='fab fa-youtube'
             value={this.state.youtube}
             onChange={this.onChange}
