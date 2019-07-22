@@ -45,22 +45,29 @@ The app itself is hosted on **Heroku**, while the database is hosted on **MongoD
 
 ## Showcase
 
+Landing page
 ![Landing](README-assets/Landing.png)
 
+Sign up page
 ![SignUp](README-assets/SignUp.png)
 
+Dashboard page
 ![Dashboard](README-assets/Dashboard.png)
 
+My profile page
 ![MyProfile1](README-assets/MyProfile1.png)
 
 ![MyProfile2](README-assets/MyProfile2.png)
 
 ![MyProfile3](README-assets/MyProfile3.png)
 
+Developers page
 ![Developers](README-assets/Developers.png)
 
+Feed page
 ![Feed](README-assets/Feed.png)
 
+Comment page
 ![Comment](README-assets/Comment.png)
 
 ## License
