@@ -6,6 +6,29 @@ A MERN stack web app for developers to connect by creating profiles and making p
 
 Click [here](https://linkeddev.herokuapp.com/) to try the app:)
 
+## Run it
+
+```javascript
+// Clone the repo
+git clone https://github.com/shawnchan2014/linked-dev.git
+
+// Get into the project folder
+cd linked-dev
+
+// Install dependencies
+npm install
+
+// Create a keys_dev.js file under the config folder and put the following code inside it
+module.exports = {
+  mongoURI: 'YOUR MONGO DB URI',
+  secretOrKey: 'YOUR SECRET'
+};
+
+// Run the project
+npm run dev
+
+```
+
 ## Description
 
 - Back-end: modeled the profile and post data with **Mongoose** and **MongoDB**, validated inputs with **Validator**, ensured account information security with **Bcrypt**, and authenticated users with **Passport** and **JSON Web Token (JWT)**.
