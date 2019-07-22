@@ -2,6 +2,8 @@
 
 A MERN stack web app for developers to connect by creating profiles and making posts and comments.
 
+This is a modified version of the original project called DevConnector from Udemy's [MERN Stack Front To Back: Full Stack React, Redux & Node.js](https://www.udemy.com/mern-stack-front-to-back/) course made by [Brad Traversy](https://www.udemy.com/user/brad-traversy/).
+
 ## Try it
 
 Click [here](https://linkeddev.herokuapp.com/) to try the app:)
@@ -40,6 +42,26 @@ npm run dev
 ## Hosting
 
 The app itself is hosted on **Heroku**, while the database is hosted on **MongoDB Atlas**.
+
+## Showcase
+
+![Landing](README-assets/Landing.png)
+
+![SignUp](README-assets/SignUp.png)
+
+![Dashboard](README-assets/Dashboard.png)
+
+![MyProfile1](README-assets/MyProfile1.png)
+
+![MyProfile2](README-assets/MyProfile2.png)
+
+![MyProfile3](README-assets/MyProfile3.png)
+
+![Developers](README-assets/Developers.png)
+
+![Feed](README-assets/Feed.png)
+
+![Comment](README-assets/Comment.png)
 
 ## License
 
