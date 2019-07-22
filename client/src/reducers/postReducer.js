@@ -25,6 +25,12 @@ export default function(state = initialState, action) {
         posts: action.payload,
         loading: false
       };
+    case DELETE_POST:
+      console.log(action.payload);
+      return {
+        ...state,
+        posts: state.posts.filter(post => post._id !== action.payload)
+      };
     case POST_LOADING:
       return {
         ...state,
