@@ -30,7 +30,7 @@ npm run dev
 
 ## Description
 
-- Written in **JavaScript** in **ES6+** versions with a total of around **5200 SLOC**.
+- Written in **JavaScript** in **ES6+** versions with a total of around **5000 SLOC**.
 - Back-end: modeled the profile and post data with **Mongoose** and **MongoDB**, validated inputs with **Validator**, ensured account information security with **Bcrypt**, and authenticated users with **Passport** and **JSON Web Token (JWT)**.
 - Front-end: built UI components with **React** and **Bootstrap 4**, managed application states with **Redux** and **Redux Thunk**, and pulled data from back-end **REST APIs** with the HTTP client **Axios**.
 - Testing: extensive back-end API testing with **Postman**, front-end page testing with Redux Chrome Extension.
